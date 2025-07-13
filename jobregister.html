@@ -1,0 +1,838 @@
+<!DOCTYPE html>
+<html lang="uz">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Usta bo'lish - BookingJob</title>
+    <script src="https://cdn.tailwindcss.com/3.4.16"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.6.0/remixicon.min.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#007AFF',
+                        secondary: '#34C759'
+                    },
+                    borderRadius: {
+                        'none': '0px',
+                        'sm': '4px',
+                        DEFAULT: '8px',
+                        'md': '12px',
+                        'lg': '16px',
+                        'xl': '20px',
+                        '2xl': '24px',
+                        '3xl': '32px',
+                        'full': '9999px',
+                        'button': '8px'
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        :where([class^="ri-"])::before {
+            content: "\f3c2";
+        }
+
+
+        .step-indicator {
+            position: relative;
+        }
+    </style>
+</head>
+
+<body class="bg-white min-h-screen">
+
+    <nav class="w-full bg-white shadow-sm border-b border-gray-100">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div class="flex items-center justify-between h-16 relative">
+            
+            <!-- Orqaga tugmasi -->
+            <a href="./index.html" class="absolute left-0 flex items-center h-full px-2 sm:static sm:mr-8">
+              <i class="ri-arrow-left-line text-xl text-gray-600 mr-1"></i>
+              <span class="text-gray-600 text-sm sm:text-base">Orqaga</span>
+            </a>
+            
+            <!-- Logo markazda (mobilda), chapda (desktopda) -->
+            <div class="flex-grow text-center sm:text-left sm:flex sm:items-center sm:justify-start">
+              <img src="./img/photo_2025-07-11_11-38-41-removebg-preview.png" alt="Logo"
+                class="h-10 mx-auto sm:mx-0 sm:h-14 object-contain">
+            </div>
+            
+            <!-- Sarlavha -->
+            <div class="hidden sm:block text-lg font-semibold text-gray-900">
+              Usta bo'lish
+            </div>
+          </div>
+        </div>
+      </nav>
+      
+
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+
+        <div class="mb-12">
+            <div class="flex items-center gap-4 overflow-x-auto no-scrollbar sm:justify-between mb-4">
+
+                <!-- Step 1 -->
+                <div class="flex items-center step-indicator active shrink-0" data-step="1">
+                    <div
+                        class="w-8 h-8 sm:w-10 sm:h-10 bg-primary text-white rounded-full flex items-center justify-center font-semibold mr-2 sm:mr-3 text-xs sm:text-base">
+                        1
+                    </div>
+                    <span class="text-xs sm:text-sm font-medium text-gray-900 whitespace-nowrap">
+                        Shaxsiy ma'lumotlar
+                    </span>
+                </div>
+
+                <!-- Step 2 -->
+                <div class="flex items-center step-indicator shrink-0" data-step="2">
+                    <div
+                        class="w-8 h-8 sm:w-10 sm:h-10 bg-gray-200 text-gray-600 rounded-full flex items-center justify-center font-semibold mr-2 sm:mr-3 text-xs sm:text-base">
+                        2
+                    </div>
+                    <span class="text-xs sm:text-sm font-medium text-gray-500 whitespace-nowrap">
+                        Professional ma'lumotlar
+                    </span>
+                </div>
+
+                <!-- Step 3 -->
+                <div class="flex items-center step-indicator shrink-0" data-step="3">
+                    <div
+                        class="w-8 h-8 sm:w-10 sm:h-10 bg-gray-200 text-gray-600 rounded-full flex items-center justify-center font-semibold mr-2 sm:mr-3 text-xs sm:text-base">
+                        3
+                    </div>
+                    <span class="text-xs sm:text-sm font-medium text-gray-500 whitespace-nowrap">
+                        Hujjatlar yuklash
+                    </span>
+                </div>
+
+                <!-- Step 4 -->
+                <div class="flex items-center step-indicator shrink-0" data-step="4">
+                    <div
+                        class="w-8 h-8 sm:w-10 sm:h-10 bg-gray-200 text-gray-600 rounded-full flex items-center justify-center font-semibold mr-2 sm:mr-3 text-xs sm:text-base">
+                        4
+                    </div>
+                    <span class="text-xs sm:text-sm font-medium text-gray-500 whitespace-nowrap">
+                        Narxlar belgilash
+                    </span>
+                </div>
+            </div>
+        </div>
+
+
+
+        <div class="bg-white rounded-2xl shadow-lg p-8">
+
+            <div class="step-content" id="step-1">
+                <div class="mb-8">
+                    <h2 class="text-2xl font-bold text-gray-900 mb-2">Shaxsiy ma'lumotlar</h2>
+                    <p class="text-gray-600">Iltimos, o'zingiz haqingizda to'liq ma'lumot kiriting</p>
+                </div>
+                <form class="space-y-6">
+                    <div class="grid md:grid-cols-2 gap-6">
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">To'liq ism *</label>
+                            <input type="text"
+                                class="w-full px-4 py-3 border border-gray-300 !rounded-button focus:ring-2 focus:ring-primary focus:border-transparent text-sm"
+                                placeholder="Familiya Ism Otasining ismi" required>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Telefon raqam *</label>
+                            <input type="tel"
+                                class="w-full px-4 py-3 border border-gray-300 !rounded-button focus:ring-2 focus:ring-primary focus:border-transparent text-sm"
+                                placeholder="+998 90 123 45 67" required>
+                        </div>
+                    </div>
+                    <div class="grid md:grid-cols-2 gap-6">
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Shahar *</label>
+                            <div class="relative">
+                                <button type="button"
+                                    class="city-select w-full px-4 py-3 border border-gray-300 !rounded-button text-left bg-white focus:ring-2 focus:ring-primary focus:border-transparent flex items-center justify-between text-sm">
+                                    <span class="text-gray-500">Shaharni tanlang</span>
+                                    <div class="w-5 h-5 flex items-center justify-center">
+                                        <i class="ri-arrow-down-s-line text-gray-400"></i>
+                                    </div>
+                                </button>
+                                <div
+                                    class="city-dropdown hidden absolute top-full left-0 right-0 bg-white border border-gray-300 rounded-button mt-1 shadow-lg z-10">
+                                    <div class="py-2">
+                                        <button type="button"
+                                            class="city-option w-full px-4 py-2 text-left hover:bg-gray-50 text-sm"
+                                            data-city="Toshkent">Toshkent</button>
+                                        <button type="button"
+                                            class="city-option w-full px-4 py-2 text-left hover:bg-gray-50 text-sm"
+                                            data-city="Samarqand">Samarqand</button>
+                                        <button type="button"
+                                            class="city-option w-full px-4 py-2 text-left hover:bg-gray-50 text-sm"
+                                            data-city="Buxoro">Buxoro</button>
+                                        <button type="button"
+                                            class="city-option w-full px-4 py-2 text-left hover:bg-gray-50 text-sm"
+                                            data-city="Andijon">Andijon</button>
+                                        <button type="button"
+                                            class="city-option w-full px-4 py-2 text-left hover:bg-gray-50 text-sm"
+                                            data-city="Namangan">Namangan</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Email manzil *</label>
+                            <input type="email"
+                                class="w-full px-4 py-3 border border-gray-300 !rounded-button focus:ring-2 focus:ring-primary focus:border-transparent text-sm"
+                                placeholder="example@mail.com" required>
+                        </div>
+                    </div>
+                    <div class="grid md:grid-cols-2 gap-6">
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Parol *</label>
+                            <input type="password"
+                                class="w-full px-4 py-3 border border-gray-300 !rounded-button focus:ring-2 focus:ring-primary focus:border-transparent text-sm"
+                                placeholder="Kamida 8 ta belgi" required>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Parolni tasdiqlang *</label>
+                            <input type="password"
+                                class="w-full px-4 py-3 border border-gray-300 !rounded-button focus:ring-2 focus:ring-primary focus:border-transparent text-sm"
+                                placeholder="Parolni qaytaring" required>
+                        </div>
+                    </div>
+                    <div class="flex justify-end">
+                        <button type="button"
+                            class="next-step bg-primary text-white px-8 py-3 !rounded-button font-semibold whitespace-nowrap hover:bg-blue-600 transition-colors">
+                            Keyingisi
+                        </button>
+                    </div>
+                </form>
+            </div>
+
+            <div class="step-content hidden" id="step-2">
+                <div class="mb-8">
+                    <h2 class="text-2xl font-bold text-gray-900 mb-2">Professional ma'lumotlar</h2>
+                    <p class="text-gray-600">Mutaxassisligingiz va tajribangiz haqida ma'lumot bering</p>
+                </div>
+                <form class="space-y-6">
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-3">Mutaxassislik *</label>
+                        <div class="grid md:grid-cols-2 gap-4">
+                            <label
+                                class="flex items-center p-4 border border-gray-300 rounded-button hover:border-primary cursor-pointer">
+                                <input type="checkbox" class="specialty-checkbox hidden">
+                                <div
+                                    class="custom-checkbox w-5 h-5 border-2 border-gray-300 rounded mr-3 flex items-center justify-center">
+                                    <i class="ri-check-line text-white text-sm hidden"></i>
+                                </div>
+                                <div class="flex items-center">
+                                    <div
+                                        class="w-8 h-8 bg-primary bg-opacity-10 rounded-full flex items-center justify-center mr-3">
+                                        <i class="ri-hammer-line text-primary"></i>
+                                    </div>
+                                    <span class="text-sm font-medium">Santexnik</span>
+                                </div>
+                            </label>
+                            <label
+                                class="flex items-center p-4 border border-gray-300 rounded-button hover:border-primary cursor-pointer">
+                                <input type="checkbox" class="specialty-checkbox hidden">
+                                <div
+                                    class="custom-checkbox w-5 h-5 border-2 border-gray-300 rounded mr-3 flex items-center justify-center">
+                                    <i class="ri-check-line text-white text-sm hidden"></i>
+                                </div>
+                                <div class="flex items-center">
+                                    <div
+                                        class="w-8 h-8 bg-primary bg-opacity-10 rounded-full flex items-center justify-center mr-3">
+                                        <i class="ri-flashlight-line text-primary"></i>
+                                    </div>
+                                    <span class="text-sm font-medium">Elektrchi</span>
+                                </div>
+                            </label>
+                            <label
+                                class="flex items-center p-4 border border-gray-300 rounded-button hover:border-primary cursor-pointer">
+                                <input type="checkbox" class="specialty-checkbox hidden">
+                                <div
+                                    class="custom-checkbox w-5 h-5 border-2 border-gray-300 rounded mr-3 flex items-center justify-center">
+                                    <i class="ri-check-line text-white text-sm hidden"></i>
+                                </div>
+                                <div class="flex items-center">
+                                    <div
+                                        class="w-8 h-8 bg-primary bg-opacity-10 rounded-full flex items-center justify-center mr-3">
+                                        <i class="ri-temp-cold-line text-primary"></i>
+                                    </div>
+                                    <span class="text-sm font-medium">Konditsioner usta</span>
+                                </div>
+                            </label>
+                            <label
+                                class="flex items-center p-4 border border-gray-300 rounded-button hover:border-primary cursor-pointer">
+                                <input type="checkbox" class="specialty-checkbox hidden">
+                                <div
+                                    class="custom-checkbox w-5 h-5 border-2 border-gray-300 rounded mr-3 flex items-center justify-center">
+                                    <i class="ri-check-line text-white text-sm hidden"></i>
+                                </div>
+                                <div class="flex items-center">
+                                    <div
+                                        class="w-8 h-8 bg-primary bg-opacity-10 rounded-full flex items-center justify-center mr-3">
+                                        <i class="ri-broom-line text-primary"></i>
+                                    </div>
+                                    <span class="text-sm font-medium">Uy tozalovchi</span>
+                                </div>
+                            </label>
+                        </div>
+                    </div>
+                    <div class="grid md:grid-cols-2 gap-6">
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Tajriba (yil) *</label>
+                            <input type="number" min="0" max="50"
+                                class="w-full px-4 py-3 border border-gray-300 !rounded-button focus:ring-2 focus:ring-primary focus:border-transparent text-sm"
+                                placeholder="5" required>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Ish vaqti *</label>
+                            <div class="relative">
+                                <button type="button"
+                                    class="schedule-select w-full px-4 py-3 border border-gray-300 !rounded-button text-left bg-white focus:ring-2 focus:ring-primary focus:border-transparent flex items-center justify-between text-sm">
+                                    <span class="text-gray-500">Ish vaqtini tanlang</span>
+                                    <div class="w-5 h-5 flex items-center justify-center">
+                                        <i class="ri-arrow-down-s-line text-gray-400"></i>
+                                    </div>
+                                </button>
+                                <div
+                                    class="schedule-dropdown hidden absolute top-full left-0 right-0 bg-white border border-gray-300 rounded-button mt-1 shadow-lg z-10">
+                                    <div class="py-2">
+                                        <button type="button"
+                                            class="schedule-option w-full px-4 py-2 text-left hover:bg-gray-50 text-sm"
+                                            data-schedule="Kun bo'yi">Kun bo'yi (8:00 - 20:00)</button>
+                                        <button type="button"
+                                            class="schedule-option w-full px-4 py-2 text-left hover:bg-gray-50 text-sm"
+                                            data-schedule="Ertalab">Ertalab (8:00 - 14:00)</button>
+                                        <button type="button"
+                                            class="schedule-option w-full px-4 py-2 text-left hover:bg-gray-50 text-sm"
+                                            data-schedule="Kechqurun">Kechqurun (14:00 - 20:00)</button>
+                                        <button type="button"
+                                            class="schedule-option w-full px-4 py-2 text-left hover:bg-gray-50 text-sm"
+                                            data-schedule="24/7">24 soat</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-3">Xizmat ko'rsatish hududi *</label>
+                        <div class="grid md:grid-cols-3 gap-3">
+                            <label
+                                class="flex items-center p-3 border border-gray-300 rounded-button hover:border-primary cursor-pointer">
+                                <input type="checkbox" class="area-checkbox hidden">
+                                <div
+                                    class="custom-checkbox w-4 h-4 border-2 border-gray-300 rounded mr-2 flex items-center justify-center">
+                                    <i class="ri-check-line text-white text-xs hidden"></i>
+                                </div>
+                                <span class="text-sm">Chilonzor</span>
+                            </label>
+                            <label
+                                class="flex items-center p-3 border border-gray-300 rounded-button hover:border-primary cursor-pointer">
+                                <input type="checkbox" class="area-checkbox hidden">
+                                <div
+                                    class="custom-checkbox w-4 h-4 border-2 border-gray-300 rounded mr-2 flex items-center justify-center">
+                                    <i class="ri-check-line text-white text-xs hidden"></i>
+                                </div>
+                                <span class="text-sm">Yunusobod</span>
+                            </label>
+                            <label
+                                class="flex items-center p-3 border border-gray-300 rounded-button hover:border-primary cursor-pointer">
+                                <input type="checkbox" class="area-checkbox hidden">
+                                <div
+                                    class="custom-checkbox w-4 h-4 border-2 border-gray-300 rounded mr-2 flex items-center justify-center">
+                                    <i class="ri-check-line text-white text-xs hidden"></i>
+                                </div>
+                                <span class="text-sm">Mirzo Ulug'bek</span>
+                            </label>
+                            <label
+                                class="flex items-center p-3 border border-gray-300 rounded-button hover:border-primary cursor-pointer">
+                                <input type="checkbox" class="area-checkbox hidden">
+                                <div
+                                    class="custom-checkbox w-4 h-4 border-2 border-gray-300 rounded mr-2 flex items-center justify-center">
+                                    <i class="ri-check-line text-white text-xs hidden"></i>
+                                </div>
+                                <span class="text-sm">Shayxontohur</span>
+                            </label>
+                            <label
+                                class="flex items-center p-3 border border-gray-300 rounded-button hover:border-primary cursor-pointer">
+                                <input type="checkbox" class="area-checkbox hidden">
+                                <div
+                                    class="custom-checkbox w-4 h-4 border-2 border-gray-300 rounded mr-2 flex items-center justify-center">
+                                    <i class="ri-check-line text-white text-xs hidden"></i>
+                                </div>
+                                <span class="text-sm">Bektemir</span>
+                            </label>
+                            <label
+                                class="flex items-center p-3 border border-gray-300 rounded-button hover:border-primary cursor-pointer">
+                                <input type="checkbox" class="area-checkbox hidden">
+                                <div
+                                    class="custom-checkbox w-4 h-4 border-2 border-gray-300 rounded mr-2 flex items-center justify-center">
+                                    <i class="ri-check-line text-white text-xs hidden"></i>
+                                </div>
+                                <span class="text-sm">Sergeli</span>
+                            </label>
+                        </div>
+                    </div>
+                    <div class="flex justify-between">
+                        <button type="button"
+                            class="prev-step border border-gray-300 text-gray-700 px-8 py-3 !rounded-button font-semibold whitespace-nowrap hover:bg-gray-50 transition-colors">
+                            Orqaga
+                        </button>
+                        <button type="button"
+                            class="next-step bg-primary text-white px-8 py-3 !rounded-button font-semibold whitespace-nowrap hover:bg-blue-600 transition-colors">
+                            Keyingisi
+                        </button>
+                    </div>
+                </form>
+            </div>
+
+            <div class="step-content hidden" id="step-3">
+                <div class="mb-8">
+                    <h2 class="text-2xl font-bold text-gray-900 mb-2">Hujjatlar yuklash</h2>
+                    <p class="text-gray-600">Kerakli hujjatlarni yuklang (JPG, PNG, PDF formatida, 5MB gacha)</p>
+                </div>
+                <form class="space-y-6">
+                    <div class="grid md:grid-cols-2 gap-6">
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-3">Pasport nusxasi *</label>
+                            <div
+                                class="border-2 border-dashed border-gray-300 rounded-button p-6 text-center hover:border-primary transition-colors cursor-pointer upload-area">
+                                <input type="file" class="hidden" accept=".jpg,.jpeg,.png,.pdf">
+                                <div
+                                    class="w-12 h-12 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-3">
+                                    <i class="ri-upload-2-line text-xl text-gray-400"></i>
+                                </div>
+                                <p class="text-sm text-gray-600 mb-1">Faylni tanlang yoki shu yerga tashlang</p>
+                                <p class="text-xs text-gray-400">JPG, PNG, PDF (5MB gacha)</p>
+                            </div>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-3">Professional sertifikat</label>
+                            <div
+                                class="border-2 border-dashed border-gray-300 rounded-button p-6 text-center hover:border-primary transition-colors cursor-pointer upload-area">
+                                <input type="file" class="hidden" accept=".jpg,.jpeg,.png,.pdf">
+                                <div
+                                    class="w-12 h-12 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-3">
+                                    <i class="ri-upload-2-line text-xl text-gray-400"></i>
+                                </div>
+                                <p class="text-sm text-gray-600 mb-1">Faylni tanlang yoki shu yerga tashlang</p>
+                                <p class="text-xs text-gray-400">JPG, PNG, PDF (5MB gacha)</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="grid md:grid-cols-2 gap-6">
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-3">Profil rasmi *</label>
+                            <div
+                                class="border-2 border-dashed border-gray-300 rounded-button p-6 text-center hover:border-primary transition-colors cursor-pointer upload-area">
+                                <input type="file" class="hidden" accept=".jpg,.jpeg,.png">
+                                <div
+                                    class="w-12 h-12 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-3">
+                                    <i class="ri-camera-line text-xl text-gray-400"></i>
+                                </div>
+                                <p class="text-sm text-gray-600 mb-1">Profil rasmingizni yuklang</p>
+                                <p class="text-xs text-gray-400">JPG, PNG (5MB gacha)</p>
+                            </div>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-3">Ish namunalari</label>
+                            <div
+                                class="border-2 border-dashed border-gray-300 rounded-button p-6 text-center hover:border-primary transition-colors cursor-pointer upload-area">
+                                <input type="file" class="hidden" accept=".jpg,.jpeg,.png" multiple>
+                                <div
+                                    class="w-12 h-12 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-3">
+                                    <i class="ri-image-line text-xl text-gray-400"></i>
+                                </div>
+                                <p class="text-sm text-gray-600 mb-1">Ishlaringiz rasmlarini yuklang</p>
+                                <p class="text-xs text-gray-400">JPG, PNG (bir nechta fayl)</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="bg-blue-50 border border-blue-200 rounded-button p-4">
+                        <div class="flex items-start">
+                            <div class="w-5 h-5 flex items-center justify-center mr-3 mt-0.5">
+                                <i class="ri-information-line text-blue-600"></i>
+                            </div>
+                            <div class="text-sm text-blue-800">
+                                <p class="font-medium mb-1">Muhim eslatma:</p>
+                                <ul class="list-disc list-inside space-y-1 text-blue-700">
+                                    <li>Barcha hujjatlar aniq va o'qilishi mumkin bo'lishi kerak</li>
+                                    <li>Profil rasmi professional ko'rinishda bo'lishi tavsiya etiladi</li>
+                                    <li>Ish namunalari sizning malakangizni ko'rsatishi kerak</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="flex justify-between">
+                        <button type="button"
+                            class="prev-step border border-gray-300 text-gray-700 px-8 py-3 !rounded-button font-semibold whitespace-nowrap hover:bg-gray-50 transition-colors">
+                            Orqaga
+                        </button>
+                        <button type="button"
+                            class="next-step bg-primary text-white px-8 py-3 !rounded-button font-semibold whitespace-nowrap hover:bg-blue-600 transition-colors">
+                            Keyingisi
+                        </button>
+                    </div>
+                </form>
+            </div>
+
+            <div class="step-content hidden" id="step-4">
+                <div class="mb-8">
+                    <h2 class="text-2xl font-bold text-gray-900 mb-2">Narxlar belgilash</h2>
+                    <p class="text-gray-600">Xizmatlaringiz uchun narxlarni belgilang</p>
+                </div>
+                <form class="space-y-6">
+                    <div class="grid md:grid-cols-2 gap-6">
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Soatlik narx (so'm) *</label>
+                            <div class="relative">
+                                <input type="number" min="10000" step="5000"
+                                    class="w-full px-4 py-3 pr-16 border border-gray-300 !rounded-button focus:ring-2 focus:ring-primary focus:border-transparent text-sm"
+                                    placeholder="80000" required>
+                                <span
+                                    class="absolute right-4 top-1/2 transform -translate-y-1/2 text-sm text-gray-500">so'm</span>
+                            </div>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Minimal buyurtma vaqti (soat)
+                                *</label>
+                            <div class="relative">
+                                <button type="button"
+                                    class="min-time-select w-full px-4 py-3 border border-gray-300 !rounded-button text-left bg-white focus:ring-2 focus:ring-primary focus:border-transparent flex items-center justify-between text-sm">
+                                    <span class="text-gray-500">Vaqtni tanlang</span>
+                                    <div class="w-5 h-5 flex items-center justify-center">
+                                        <i class="ri-arrow-down-s-line text-gray-400"></i>
+                                    </div>
+                                </button>
+                                <div
+                                    class="min-time-dropdown hidden absolute top-full left-0 right-0 bg-white border border-gray-300 rounded-button mt-1 shadow-lg z-10">
+                                    <div class="py-2">
+                                        <button type="button"
+                                            class="min-time-option w-full px-4 py-2 text-left hover:bg-gray-50 text-sm"
+                                            data-time="1">1 soat</button>
+                                        <button type="button"
+                                            class="min-time-option w-full px-4 py-2 text-left hover:bg-gray-50 text-sm"
+                                            data-time="2">2 soat</button>
+                                        <button type="button"
+                                            class="min-time-option w-full px-4 py-2 text-left hover:bg-gray-50 text-sm"
+                                            data-time="3">3 soat</button>
+                                        <button type="button"
+                                            class="min-time-option w-full px-4 py-2 text-left hover:bg-gray-50 text-sm"
+                                            data-time="4">4 soat</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="grid md:grid-cols-2 gap-6">
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Yo'l haqi (so'm)</label>
+                            <div class="relative">
+                                <input type="number" min="0" step="1000"
+                                    class="w-full px-4 py-3 pr-16 border border-gray-300 !rounded-button focus:ring-2 focus:ring-primary focus:border-transparent text-sm"
+                                    placeholder="10000">
+                                <span
+                                    class="absolute right-4 top-1/2 transform -translate-y-1/2 text-sm text-gray-500">so'm</span>
+                            </div>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Shoshilinch chaqiruv qo'shimcha
+                                to'lovi (%)</label>
+                            <div class="relative">
+                                <input type="number" min="0" max="100" step="5"
+                                    class="w-full px-4 py-3 pr-8 border border-gray-300 !rounded-button focus:ring-2 focus:ring-primary focus:border-transparent text-sm"
+                                    placeholder="20">
+                                <span
+                                    class="absolute right-4 top-1/2 transform -translate-y-1/2 text-sm text-gray-500">%</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="bg-gray-50 rounded-button p-6">
+                        <h3 class="text-lg font-semibold text-gray-900 mb-4">Narx hisob-kitobi namunasi</h3>
+                        <div class="space-y-2 text-sm">
+                            <div class="flex justify-between">
+                                <span class="text-gray-600">Soatlik narx:</span>
+                                <span class="font-medium">80,000 so'm</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span class="text-gray-600">2 soatlik ish:</span>
+                                <span class="font-medium">160,000 so'm</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span class="text-gray-600">Yo'l haqi:</span>
+                                <span class="font-medium">10,000 so'm</span>
+                            </div>
+                            <div class="border-t border-gray-200 pt-2 flex justify-between">
+                                <span class="font-semibold text-gray-900">Jami:</span>
+                                <span class="font-bold text-primary">170,000 so'm</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="border border-gray-200 rounded-button p-4">
+                        <label class="flex items-start cursor-pointer">
+                            <input type="checkbox" class="terms-checkbox hidden" required>
+                            <div
+                                class="custom-checkbox w-5 h-5 border-2 border-gray-300 rounded mr-3 mt-0.5 flex items-center justify-center">
+                                <i class="ri-check-line text-white text-sm hidden"></i>
+                            </div>
+                            <div class="text-sm text-gray-700">
+                                <p class="mb-2">Men quyidagilarni qabul qilaman:</p>
+                                <ul class="list-disc list-inside space-y-1 text-gray-600">
+                                    <li>BookingJob platformasining foydalanish shartlari</li>
+                                    <li>Maxfiylik siyosati</li>
+                                    <li>Usta uchun qoidalar va majburiyatlar</li>
+                                    <li>To'lov va komissiya shartlari</li>
+                                </ul>
+                            </div>
+                        </label>
+                    </div>
+                    <div class="flex justify-between">
+                        <button type="button"
+                            class="prev-step border border-gray-300 text-gray-700 px-8 py-3 !rounded-button font-semibold whitespace-nowrap hover:bg-gray-50 transition-colors">
+                            Orqaga
+                        </button>
+                        <button type="submit"
+                            class="submit-form bg-secondary text-white px-8 py-3 !rounded-button font-semibold whitespace-nowrap hover:bg-green-600 transition-colors">
+                            Ro'yxatdan o'tish
+                        </button>
+                    </div>
+                </form>
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="success-message hidden fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+        <div class="bg-white rounded-2xl p-8 max-w-md mx-4 text-center">
+            <div class="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                <i class="ri-check-line text-2xl text-green-600"></i>
+            </div>
+            <h3 class="text-xl font-bold text-gray-900 mb-2">Muvaffaqiyatli!</h3>
+            <p class="text-gray-600 mb-6">Sizning arizangiz qabul qilindi. Tez orada bog'lanamiz.</p>
+            <a href="./index.html" data-readdy="true"
+                class="bg-primary text-white px-6 py-3 !rounded-button font-semibold whitespace-nowrap hover:bg-blue-600 transition-colors inline-block">
+                Bosh sahifaga qaytish
+            </a>
+        </div>
+    </div>
+    <footer class="bg-gray-900 text-white py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-4 gap-8">
+                <div>
+                    <h3 class="text-2xl font-['Pacifico'] text-primary mb-4">BookingJob</h3>
+                    <p class="text-gray-400">Ustani chaqirish hech qachon bu darajada oson bo'lmagan!</p>
+                </div>
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">Xizmatlar</h4>
+                    <ul class="space-y-2 text-gray-400">
+                        <li>Santexnik</li>
+                        <li>Elektrchi</li>
+                        <li>Konditsioner usta</li>
+                        <li>Uy tozalovchi</li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">Kompaniya</h4>
+                    <ul class="space-y-2 text-gray-400">
+                        <li>Biz haqimizda</li>
+                        <li>Aloqa</li>
+                        <li>Yordam</li>
+                        <li>Maxfiylik</li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">Aloqa</h4>
+                    <div class="space-y-2 text-gray-400">
+                        <p>+998 90 123 45 67</p>
+                        <p>info@bookingjob.uz</p>
+                        <p>Toshkent, O'zbekiston</p>
+                    </div>
+                </div>
+            </div>
+            <div class="border-t border-gray-800 mt-8 pt-8 text-center text-gray-400">
+                <p>&copy; 2024 BookingJob. Barcha huquqlar himoyalangan.</p>
+            </div>
+        </div>
+    </footer>
+    <script id="step-navigation">
+        document.addEventListener('DOMContentLoaded', function () {
+            let currentStep = 1;
+            const totalSteps = 4;
+
+            function updateStepIndicator() {
+                document.querySelectorAll('.step-indicator').forEach((indicator, index) => {
+                    const stepNum = index + 1;
+                    const circle = indicator.querySelector('div');
+                    const text = indicator.querySelector('span');
+
+                    if (stepNum <= currentStep) {
+                        circle.classList.remove('bg-gray-200', 'text-gray-600');
+                        circle.classList.add('bg-primary', 'text-white');
+                        text.classList.remove('text-gray-500');
+                        text.classList.add('text-gray-900');
+                        indicator.classList.add('active');
+                    } else {
+                        circle.classList.remove('bg-primary', 'text-white');
+                        circle.classList.add('bg-gray-200', 'text-gray-600');
+                        text.classList.remove('text-gray-900');
+                        text.classList.add('text-gray-500');
+                        indicator.classList.remove('active');
+                    }
+                });
+            }
+
+            function showStep(step) {
+                document.querySelectorAll('.step-content').forEach(content => {
+                    content.classList.add('hidden');
+                });
+                document.getElementById(`step-${step}`).classList.remove('hidden');
+                updateStepIndicator();
+            }
+
+            document.querySelectorAll('.next-step').forEach(button => {
+                button.addEventListener('click', function () {
+                    if (currentStep < totalSteps) {
+                        currentStep++;
+                        showStep(currentStep);
+                    }
+                });
+            });
+
+            document.querySelectorAll('.prev-step').forEach(button => {
+                button.addEventListener('click', function () {
+                    if (currentStep > 1) {
+                        currentStep--;
+                        showStep(currentStep);
+                    }
+                });
+            });
+
+            document.querySelector('.submit-form').addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector('.success-message').classList.remove('hidden');
+            });
+        });
+    </script>
+
+    <script id="dropdown-functionality">
+        document.addEventListener('DOMContentLoaded', function () {
+            function setupDropdown(selectClass, dropdownClass, optionClass) {
+                const select = document.querySelector(selectClass);
+                const dropdown = document.querySelector(dropdownClass);
+                const options = document.querySelectorAll(optionClass);
+
+                if (select && dropdown) {
+                    select.addEventListener('click', function () {
+                        dropdown.classList.toggle('hidden');
+                    });
+
+                    options.forEach(option => {
+                        option.addEventListener('click', function () {
+                            const value = this.getAttribute('data-city') || this.getAttribute('data-schedule') || this.getAttribute('data-time');
+                            select.querySelector('span').textContent = this.textContent;
+                            dropdown.classList.add('hidden');
+                        });
+                    });
+
+                    document.addEventListener('click', function (e) {
+                        if (!select.contains(e.target) && !dropdown.contains(e.target)) {
+                            dropdown.classList.add('hidden');
+                        }
+                    });
+                }
+            }
+
+            setupDropdown('.city-select', '.city-dropdown', '.city-option');
+            setupDropdown('.schedule-select', '.schedule-dropdown', '.schedule-option');
+            setupDropdown('.min-time-select', '.min-time-dropdown', '.min-time-option');
+        });
+    </script>
+
+    <script id="checkbox-functionality">
+        document.addEventListener('DOMContentLoaded', function () {
+            function setupCheckboxes(checkboxClass) {
+                document.querySelectorAll(checkboxClass).forEach(label => {
+                    const checkbox = label.querySelector('input[type="checkbox"]');
+                    const customCheckbox = label.querySelector('.custom-checkbox');
+                    const checkIcon = customCheckbox.querySelector('i');
+
+                    label.addEventListener('click', function (e) {
+                        e.preventDefault();
+                        checkbox.checked = !checkbox.checked;
+
+                        if (checkbox.checked) {
+                            customCheckbox.classList.remove('border-gray-300');
+                            customCheckbox.classList.add('bg-primary', 'border-primary');
+                            checkIcon.classList.remove('hidden');
+                            label.classList.add('border-primary', 'bg-blue-50');
+                        } else {
+                            customCheckbox.classList.remove('bg-primary', 'border-primary');
+                            customCheckbox.classList.add('border-gray-300');
+                            checkIcon.classList.add('hidden');
+                            label.classList.remove('border-primary', 'bg-blue-50');
+                        }
+                    });
+                });
+            }
+
+            setupCheckboxes('label:has(.specialty-checkbox)');
+            setupCheckboxes('label:has(.area-checkbox)');
+            setupCheckboxes('label:has(.terms-checkbox)');
+        });
+    </script>
+
+    <script id="file-upload">
+        document.addEventListener('DOMContentLoaded', function () {
+            document.querySelectorAll('.upload-area').forEach(area => {
+                const input = area.querySelector('input[type="file"]');
+
+                area.addEventListener('click', function () {
+                    input.click();
+                });
+
+                area.addEventListener('dragover', function (e) {
+                    e.preventDefault();
+                    area.classList.add('border-primary', 'bg-blue-50');
+                });
+
+                area.addEventListener('dragleave', function () {
+                    area.classList.remove('border-primary', 'bg-blue-50');
+                });
+
+                area.addEventListener('drop', function (e) {
+                    e.preventDefault();
+                    area.classList.remove('border-primary', 'bg-blue-50');
+                    const files = e.dataTransfer.files;
+                    if (files.length > 0) {
+                        input.files = files;
+                        updateUploadArea(area, files[0].name);
+                    }
+                });
+
+                input.addEventListener('change', function () {
+                    if (this.files.length > 0) {
+                        updateUploadArea(area, this.files[0].name);
+                    }
+                });
+            });
+
+            function updateUploadArea(area, fileName) {
+                const icon = area.querySelector('i');
+                const text = area.querySelector('p');
+
+                icon.className = 'ri-check-line text-xl text-green-600';
+                text.textContent = fileName;
+                area.classList.add('border-green-300', 'bg-green-50');
+            }
+        });
+    </script>
+
+</body>
+
+</html>

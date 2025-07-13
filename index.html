@@ -1,0 +1,557 @@
+<!DOCTYPE html>
+<html lang="uz">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BookingJob - Ustani chaqirish hech qachon bu darajada oson bo'lmagan!</title>
+    <script src="https://cdn.tailwindcss.com/3.4.16"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.6.0/remixicon.min.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#007AFF',
+                        secondary: '#34C759'
+                    },
+                    borderRadius: {
+                        'none': '0px',
+                        'sm': '4px',
+                        DEFAULT: '8px',
+                        'md': '12px',
+                        'lg': '16px',
+                        'xl': '20px',
+                        '2xl': '24px',
+                        '3xl': '32px',
+                        'full': '9999px',
+                        'button': '8px'
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        :where([class^="ri-"])::before {
+            content: "\f3c2";
+        }
+    </style>
+</head>
+
+<body class="bg-white min-h-screen">
+    <!-- Navigation -->
+    <nav class="w-full bg-white shadow-sm border-b py-2 border-gray-100 fixed top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <!-- Logo -->
+                <div class="flex items-center">
+                    <img src="./img/photo_2025-07-11_11-38-41-removebg-preview.png" alt="bookingjob" class="h-12" />
+                </div>
+
+                <!-- Desktop Menu -->
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="#services" class="text-gray-700 hover:text-blue-600 transition">Xizmatlar</a>
+                    <a href="Register.html" class="text-gray-700 hover:text-blue-600 transition">Ro'yxatdan o'tish</a>
+                    <a href="Register.html"
+                        class="border-blue-500 border-2 text-blue-500 px-6 py-2 hover:text-white  rounded-md hover:bg-blue-700 transition">Kirish</a>
+                </div>
+
+                <!-- Hamburger -->
+                <div class="md:hidden">
+                    <button id="menu-btn" class="text-gray-700">
+                        <i class="ri-menu-line text-2xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Sidebar -->
+    <div id="sidebar"
+        class="fixed inset-y-0 left-0 w-64 bg-white shadow-lg transform -translate-x-full transition-transform z-50 md:hidden">
+        <div class="p-6 space-y-4">
+            <div class="flex justify-between items-center">
+                <h2 class="text-lg font-semibold">Menyu</h2>
+                <button id="close-btn"><i class="ri-close-line text-2xl text-gray-700"></i></button>
+            </div>
+            <hr>
+            <a href="#services" class="block text-gray-700 hover:text-blue-600">Xizmatlar</a>
+            <a href="#register" class="block text-gray-700 hover:text-blue-600">Ro'yxatdan o'tish</a>
+            <a href="Register.html"
+                class="block bg-blue-600 text-white text-center py-2 rounded hover:bg-blue-700">Kirish</a>
+        </div>
+    </div>
+
+    <!-- BACKDROP -->
+    <div id="overlay" class="fixed inset-0 bg-black bg-opacity-40 hidden z-40"></div>
+
+    <!-- Hero Section -->
+    <section class="w-full min-h-screen relative overflow-hidden"
+        style="background-image: url('https://readdy.ai/api/search-image?query=modern%20professional%20home%20services%20background%20with%20clean%20white%20and%20blue%20gradient%2C%20minimalist%20design%2C%20tools%20and%20equipment%20subtly%20placed%2C%20bright%20and%20welcoming%20atmosphere%2C%20high%20quality%20photography%2C%20soft%20lighting%2C%20contemporary%20interior%20design%20elements&width=1920&height=1080&seq=hero-bg-001&orientation=landscape'); background-size: cover; background-position: center; background-repeat: no-repeat;">
+        <div class="absolute inset-0 bg-white bg-opacity-80"></div>
+        <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-full flex items-center">
+            <div class="w-full grid lg:grid-cols-2 gap-12 items-center min-h-screen py-20">
+                <div class="space-y-8">
+                    <h1 class="text-4xl lg:text-6xl font-bold text-gray-900 leading-tight">
+                        Ustani chaqirish hech qachon bu darajada
+                        <span class="text-primary">oson bo'lmagan!</span>
+                    </h1>
+                    <p class="text-xl text-gray-600 leading-relaxed">
+                        Bir necha daqiqada malakali ustalarni toping va xizmat buyurtma qiling.
+                        Santexnik, elektrchi, konditsioner usta va boshqa xizmatlar uchun ishonchli platform.
+                    </p>
+                    <div class="flex flex-col sm:flex-row gap-4">
+                        <button
+                            class="bg-primary text-white px-8 py-4 !rounded-button text-lg font-semibold whitespace-nowrap hover:bg-blue-600 transition-colors">
+                            Xizmat buyurtma qilish
+                        </button>
+                        <a href="./jobregister.html" data-readdy="true">
+                            <button
+                                class="w-full sm:w-auto border-2 border-blue-600 text-blue-600 px-6 py-3 !rounded-button text-base sm:text-lg font-semibold whitespace-nowrap hover:bg-blue-600 hover:text-white transition-colors">
+                                Usta bo'lish
+                            </button>
+
+                        </a>
+                    </div>
+                </div>
+                <div class="hidden lg:block">
+                    <img src="https://readdy.ai/api/search-image?query=professional%20home%20service%20worker%20with%20tools%2C%20friendly%20technician%20in%20uniform%2C%20modern%20clean%20background%2C%20high%20quality%20portrait%20photography%2C%20confident%20and%20reliable%20appearance%2C%20tools%20and%20equipment%20visible&width=600&height=700&seq=hero-img-002&orientation=portrait"
+                        alt="Professional Service" class="w-full h-auto object-cover rounded-2xl shadow-2xl">
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Services Section -->
+    <section class="py-20 bg-gray-50" id="services">
+        <div class="max-w-7xl mx-auto px-4">
+          <div class="text-center mb-16">
+            <h2 class="text-4xl font-bold mb-4 text-gray-900">Bizning xizmatlarimiz</h2>
+            <p class="text-xl text-gray-600">Har qanday uy ishlaringiz uchun malakali ustalarni toping</p>
+          </div>
+      
+          <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+            <!-- Har bir karta uchun umumiy flex -->
+            <a href="usta.html?type=santexnik"
+               class="group bg-white p-8 rounded-3xl shadow-xl text-center flex flex-col justify-between transition hover:-translate-y-2 hover:shadow-2xl duration-300">
+              <div>
+                <div class="text-4xl mb-6 transform transition-transform duration-300 group-hover:scale-125 group-hover:rotate-6">
+                  <i class="ri-tools-line text-4xl text-blue-500 bg-blue-100 rounded-full p-3"></i>
+                </div>
+                <h3 class="text-xl font-semibold text-gray-800 mb-2">Santexnik</h3>
+                <p class="text-gray-600 mb-6">Suv quvurlari, kranlar va sanitariya ta’miri</p>
+              </div>
+              <button class="mx-auto bg-blue-600 text-white px-10 py-3 !rounded-button text-lg font-semibold hover:bg-blue-700 transition">Usta topish</button>
+            </a>
+          
+            <!-- 2. Elektrchi -->
+            <a href="usta.html?type=elektrchi"
+               class="group bg-white p-8 rounded-3xl shadow-xl text-center flex flex-col justify-between transition hover:-translate-y-2 hover:shadow-2xl duration-300">
+              <div>
+                <div class="text-4xl mb-6 transform transition-transform duration-300 group-hover:scale-125 group-hover:rotate-6">
+                  <i class="ri-flashlight-fill text-4xl text-blue-500 bg-blue-100 rounded-full p-3"></i>
+                </div>
+                <h3 class="text-xl font-semibold text-gray-800 mb-2">Elektrchi</h3>
+                <p class="text-gray-600 mb-6">Elektr sim va qurilmalar</p>
+              </div>
+              <button class="mx-auto bg-blue-600 text-white px-10 py-3 !rounded-button text-lg font-semibold hover:bg-blue-700 transition">Usta topish</button>
+            </a>
+          
+            <!-- 3. Konditsioner -->
+            <a href="usta.html?type=konditsioner"
+               class="group bg-white p-8 rounded-3xl shadow-xl text-center flex flex-col justify-between transition hover:-translate-y-2 hover:shadow-2xl duration-300">
+              <div>
+                <div class="text-4xl mb-6 transform transition-transform duration-300 group-hover:scale-125 group-hover:rotate-6">
+                  <i class="ri-snowflake-line text-4xl text-blue-500 bg-blue-100 rounded-full p-3"></i>
+                </div>
+                <h3 class="text-xl font-semibold text-gray-800 mb-2">Konditsioner</h3>
+                <p class="text-gray-600 mb-6">O‘rnatish va xizmat</p>
+              </div>
+              <button class="mx-auto bg-blue-600 text-white px-10 py-3 !rounded-button text-lg font-semibold hover:bg-blue-700 transition">Usta topish</button>
+            </a>
+          
+            <!-- 4. Uy tozalovchi -->
+            <a href="usta.html?type=tozalovchi"
+               class="group bg-white p-8 rounded-3xl shadow-xl text-center flex flex-col justify-between transition hover:-translate-y-2 hover:shadow-2xl duration-300">
+              <div>
+                <div class="text-4xl mb-6 transform transition-transform duration-300 group-hover:scale-125 group-hover:rotate-6">
+                  <i class="ri-checkbox-blank-circle-line text-4xl text-blue-500 bg-blue-100 rounded-full p-3"></i>
+                </div>
+                <h3 class="text-xl font-semibold text-gray-800 mb-2">Uy tozalovchi</h3>
+                <p class="text-gray-600 mb-6">Uy va ofis tozalash</p>
+              </div>
+              <button class="mx-auto bg-blue-600 text-white px-10 py-3 !rounded-button text-lg font-semibold hover:bg-blue-700 transition">Usta topish</button>
+            </a>
+          </div>
+          
+        </div>
+      </section>
+      
+      
+
+    
+
+    <!-- Masters List Section -->
+    <section class="py-20 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <h2 class="text-4xl font-bold text-gray-900 mb-4">Malakali ustalar</h2>
+                <p class="text-xl text-gray-600">Eng yaxshi ustalarni tanlang</p>
+            </div>
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="bg-white p-6 rounded-2xl shadow-lg hover:shadow-xl transition-shadow">
+                    <div class="flex items-center mb-4">
+                        <img src="https://readdy.ai/api/search-image?query=professional%20plumber%20portrait%2C%20middle%20aged%20man%20in%20work%20uniform%2C%20friendly%20smile%2C%20clean%20background%2C%20high%20quality%20headshot%20photography%2C%20trustworthy%20appearance&width=80&height=80&seq=master-001&orientation=squarish"
+                            alt="Usta" class="w-16 h-16 rounded-full object-cover mr-4">
+                        <div>
+                            <h3 class="text-lg font-semibold text-gray-900">Bobur Karimov</h3>
+                            <p class="text-gray-600">Santexnik</p>
+                        </div>
+                    </div>
+                    <div class="space-y-2 mb-4">
+                        <div class="flex items-center">
+                            <span class="text-sm text-gray-600 mr-2">Tajriba:</span>
+                            <span class="text-sm font-medium">8 yil</span>
+                        </div>
+                        <div class="flex items-center">
+                            <span class="text-sm text-gray-600 mr-2">Reyting:</span>
+                            <div class="flex text-yellow-400">
+                                <i class="ri-star-fill text-sm"></i>
+                                <i class="ri-star-fill text-sm"></i>
+                                <i class="ri-star-fill text-sm"></i>
+                                <i class="ri-star-fill text-sm"></i>
+                                <i class="ri-star-fill text-sm"></i>
+                            </div>
+                            <span class="text-sm text-gray-600 ml-1">(4.9)</span>
+                        </div>
+                        <div class="flex items-center">
+                            <span class="text-sm text-gray-600 mr-2">Narx:</span>
+                            <span class="text-lg font-bold text-primary">80,000 so'm/soat</span>
+                        </div>
+                    </div>
+                    <a href="booking.html" data-readdy="true" class="block">
+                        <button
+                            class="w-full bg-primary text-white py-3 !rounded-button font-semibold whitespace-nowrap hover:bg-blue-600 transition-colors">
+                            Buyurtma berish
+                        </button>
+                    </a>
+                </div>
+                <div class="bg-white p-6 rounded-2xl shadow-lg hover:shadow-xl transition-shadow">
+                    <div class="flex items-center mb-4">
+                        <img src="https://readdy.ai/api/search-image?query=professional%20electrician%20portrait%2C%20young%20man%20with%20electrical%20tools%2C%20work%20uniform%2C%20confident%20expression%2C%20clean%20background%2C%20high%20quality%20headshot%20photography&width=80&height=80&seq=master-002&orientation=squarish"
+                            alt="Usta" class="w-16 h-16 rounded-full object-cover mr-4">
+                        <div>
+                            <h3 class="text-lg font-semibold text-gray-900">Jasur Toshmatov</h3>
+                            <p class="text-gray-600">Elektrchi</p>
+                        </div>
+                    </div>
+                    <div class="space-y-2 mb-4">
+                        <div class="flex items-center">
+                            <span class="text-sm text-gray-600 mr-2">Tajriba:</span>
+                            <span class="text-sm font-medium">12 yil</span>
+                        </div>
+                        <div class="flex items-center">
+                            <span class="text-sm text-gray-600 mr-2">Reyting:</span>
+                            <div class="flex text-yellow-400">
+                                <i class="ri-star-fill text-sm"></i>
+                                <i class="ri-star-fill text-sm"></i>
+                                <i class="ri-star-fill text-sm"></i>
+                                <i class="ri-star-fill text-sm"></i>
+                                <i class="ri-star-line text-sm"></i>
+                            </div>
+                            <span class="text-sm text-gray-600 ml-1">(4.7)</span>
+                        </div>
+                        <div class="flex items-center">
+                            <span class="text-sm text-gray-600 mr-2">Narx:</span>
+                            <span class="text-lg font-bold text-primary">90,000 so'm/soat</span>
+                        </div>
+                    </div>
+                    <a href="booking.html" data-readdy="true" class="block">
+                        <button
+                            class="w-full bg-primary text-white py-3 !rounded-button font-semibold whitespace-nowrap hover:bg-blue-600 transition-colors">
+                            Buyurtma berish
+                        </button>
+                    </a>
+                </div>
+                <div class="bg-white p-6 rounded-2xl shadow-lg hover:shadow-xl transition-shadow">
+                    <div class="flex items-center mb-4">
+                        <img src="https://readdy.ai/api/search-image?query=professional%20air%20conditioning%20technician%20portrait%2C%20experienced%20worker%20with%20cooling%20equipment%2C%20work%20uniform%2C%20reliable%20appearance%2C%20clean%20background%2C%20high%20quality%20headshot%20photography&width=80&height=80&seq=master-003&orientation=squarish"
+                            alt="Usta" class="w-16 h-16 rounded-full object-cover mr-4">
+                        <div>
+                            <h3 class="text-lg font-semibold text-gray-900">Sardor Nazarov</h3>
+                            <p class="text-gray-600">Konditsioner usta</p>
+                        </div>
+                    </div>
+                    <div class="space-y-2 mb-4">
+                        <div class="flex items-center">
+                            <span class="text-sm text-gray-600 mr-2">Tajriba:</span>
+                            <span class="text-sm font-medium">6 yil</span>
+                        </div>
+                        <div class="flex items-center">
+                            <span class="text-sm text-gray-600 mr-2">Reyting:</span>
+                            <div class="flex text-yellow-400">
+                                <i class="ri-star-fill text-sm"></i>
+                                <i class="ri-star-fill text-sm"></i>
+                                <i class="ri-star-fill text-sm"></i>
+                                <i class="ri-star-fill text-sm"></i>
+                                <i class="ri-star-fill text-sm"></i>
+                            </div>
+                            <span class="text-sm text-gray-600 ml-1">(5.0)</span>
+                        </div>
+                        <div class="flex items-center">
+                            <span class="text-sm text-gray-600 mr-2">Narx:</span>
+                            <span class="text-lg font-bold text-primary">100,000 so'm/soat</span>
+                        </div>
+                    </div>
+                    <a href="booking.html" data-readdy="true" class="block">
+                        <button
+                            class="w-full bg-primary text-white py-3 !rounded-button font-semibold whitespace-nowrap hover:bg-blue-600 transition-colors">
+                            Buyurtma berish
+                        </button>
+                    </a>
+                </div>
+                <div class="bg-white p-6 rounded-2xl shadow-lg hover:shadow-xl transition-shadow">
+                    <div class="flex items-center mb-4">
+                        <img src="https://readdy.ai/api/search-image?query=professional%20house%20cleaner%20portrait%2C%20woman%20in%20cleaning%20uniform%2C%20friendly%20smile%2C%20cleaning%20supplies%20visible%2C%20clean%20background%2C%20high%20quality%20headshot%20photography%2C%20trustworthy%20appearance&width=80&height=80&seq=master-004&orientation=squarish"
+                            alt="Usta" class="w-16 h-16 rounded-full object-cover mr-4">
+                        <div>
+                            <h3 class="text-lg font-semibold text-gray-900">Dilnoza Rahimova</h3>
+                            <p class="text-gray-600">Uy tozalovchi</p>
+                        </div>
+                    </div>
+                    <div class="space-y-2 mb-4">
+                        <div class="flex items-center">
+                            <span class="text-sm text-gray-600 mr-2">Tajriba:</span>
+                            <span class="text-sm font-medium">4 yil</span>
+                        </div>
+                        <div class="flex items-center">
+                            <span class="text-sm text-gray-600 mr-2">Reyting:</span>
+                            <div class="flex text-yellow-400">
+                                <i class="ri-star-fill text-sm"></i>
+                                <i class="ri-star-fill text-sm"></i>
+                                <i class="ri-star-fill text-sm"></i>
+                                <i class="ri-star-fill text-sm"></i>
+                                <i class="ri-star-fill text-sm"></i>
+                            </div>
+                            <span class="text-sm text-gray-600 ml-1">(4.8)</span>
+                        </div>
+                        <div class="flex items-center">
+                            <span class="text-sm text-gray-600 mr-2">Narx:</span>
+                            <span class="text-lg font-bold text-primary">60,000 so'm/soat</span>
+                        </div>
+                    </div>
+                    <a href="booking.html" data-readdy="true" class="block">
+                        <button
+                            class="w-full bg-primary text-white py-3 !rounded-button font-semibold whitespace-nowrap hover:bg-blue-600 transition-colors">
+                            Buyurtma berish
+                        </button>
+                    </a>
+                </div>
+                <div class="bg-white p-6 rounded-2xl shadow-lg hover:shadow-xl transition-shadow">
+                    <div class="flex items-center mb-4">
+                        <img src="https://readdy.ai/api/search-image?query=professional%20handyman%20portrait%2C%20middle%20aged%20man%20with%20various%20tools%2C%20work%20uniform%2C%20experienced%20appearance%2C%20clean%20background%2C%20high%20quality%20headshot%20photography&width=80&height=80&seq=master-005&orientation=squarish"
+                            alt="Usta" class="w-16 h-16 rounded-full object-cover mr-4">
+                        <div>
+                            <h3 class="text-lg font-semibold text-gray-900">Otabek Yusupov</h3>
+                            <p class="text-gray-600">Santexnik</p>
+                        </div>
+                    </div>
+                    <div class="space-y-2 mb-4">
+                        <div class="flex items-center">
+                            <span class="text-sm text-gray-600 mr-2">Tajriba:</span>
+                            <span class="text-sm font-medium">10 yil</span>
+                        </div>
+                        <div class="flex items-center">
+                            <span class="text-sm text-gray-600 mr-2">Reyting:</span>
+                            <div class="flex text-yellow-400">
+                                <i class="ri-star-fill text-sm"></i>
+                                <i class="ri-star-fill text-sm"></i>
+                                <i class="ri-star-fill text-sm"></i>
+                                <i class="ri-star-fill text-sm"></i>
+                                <i class="ri-star-line text-sm"></i>
+                            </div>
+                            <span class="text-sm text-gray-600 ml-1">(4.6)</span>
+                        </div>
+                        <div class="flex items-center">
+                            <span class="text-sm text-gray-600 mr-2">Narx:</span>
+                            <span class="text-lg font-bold text-primary">85,000 so'm/soat</span>
+                        </div>
+                    </div>
+                    <a href="booking.html" data-readdy="true" class="block">
+                        <button
+                            class="w-full bg-primary text-white py-3 !rounded-button font-semibold whitespace-nowrap hover:bg-blue-600 transition-colors">
+                            Buyurtma berish
+                        </button>
+                    </a>
+                </div>
+                <div class="bg-white p-6 rounded-2xl shadow-lg hover:shadow-xl transition-shadow">
+                    <div class="flex items-center mb-4">
+                        <img src="https://images.app.goo.gl/Q4D3xCrZjY1L71Bn9" alt="Usta"
+                            class="w-16 h-16 rounded-full object-cover mr-4">
+                        <div>
+                            <h3 class="text-lg font-semibold text-gray-900">Farrux Mahmudov</h3>
+                            <p class="text-gray-600">Elektrchi</p>
+                        </div>
+                    </div>
+                    <div class="space-y-2 mb-4">
+                        <div class="flex items-center">
+                            <span class="text-sm text-gray-600 mr-2">Tajriba:</span>
+                            <span class="text-sm font-medium">7 yil</span>
+                        </div>
+                        <div class="flex items-center">
+                            <span class="text-sm text-gray-600 mr-2">Reyting:</span>
+                            <div class="flex text-yellow-400">
+                                <i class="ri-star-fill text-sm"></i>
+                                <i class="ri-star-fill text-sm"></i>
+                                <i class="ri-star-fill text-sm"></i>
+                                <i class="ri-star-fill text-sm"></i>
+                                <i class="ri-star-fill text-sm"></i>
+                            </div>
+                            <span class="text-sm text-gray-600 ml-1">(4.9)</span>
+                        </div>
+                        <div class="flex items-center">
+                            <span class="text-sm text-gray-600 mr-2">Narx:</span>
+                            <span class="text-lg font-bold text-primary">95,000 so'm/soat</span>
+                        </div>
+                    </div>
+                    <a href="booking.html" data-readdy="true" class="block">
+                        <button
+                            class="w-full bg-primary text-white py-3 !rounded-button font-semibold whitespace-nowrap hover:bg-blue-600 transition-colors">
+                            Buyurtma berish
+                        </button>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-4 gap-8">
+                <div>
+                    <h3 class="text-2xl font-['Pacifico'] text-primary mb-4">BookingJob</h3>
+                    <p class="text-gray-400">Ustani chaqirish hech qachon bu darajada oson bo'lmagan!</p>
+                </div>
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">Xizmatlar</h4>
+                    <ul class="space-y-2 text-gray-400">
+                        <li>Santexnik</li>
+                        <li>Elektrchi</li>
+                        <li>Konditsioner usta</li>
+                        <li>Uy tozalovchi</li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">Kompaniya</h4>
+                    <ul class="space-y-2 text-gray-400">
+                        <li>Biz haqimizda</li>
+                        <li>Aloqa</li>
+                        <li>Yordam</li>
+                        <li>Maxfiylik</li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">Aloqa</h4>
+                    <div class="space-y-2 text-gray-400">
+                        <p>+998 90 123 45 67</p>
+                        <p>info@bookingjob.uz</p>
+                        <p>Toshkent, O'zbekiston</p>
+                    </div>
+                </div>
+            </div>
+            <div class="border-t border-gray-800 mt-8 pt-8 text-center text-gray-400">
+                <p>&copy; 2024 BookingJob. Barcha huquqlar himoyalangan.</p>
+            </div>
+        </div>
+    </footer>
+    <script id="tab-functionality">
+        document.addEventListener('DOMContentLoaded', function () {
+            const tabButtons = document.querySelectorAll('.tab-button');
+            const tabContents = document.querySelectorAll('.tab-content');
+            tabButtons.forEach(button => {
+                button.addEventListener('click', function () {
+                    const targetTab = this.getAttribute('data-tab');
+                    tabButtons.forEach(btn => {
+                        btn.classList.remove('bg-primary', 'text-white');
+                        btn.classList.add('bg-gray-200', 'text-gray-700', 'hover:bg-gray-300');
+                    });
+                    this.classList.remove('bg-gray-200', 'text-gray-700', 'hover:bg-gray-300');
+                    this.classList.add('bg-primary', 'text-white');
+                    tabContents.forEach(content => {
+                        content.classList.add('hidden');
+                    });
+                    document.getElementById(targetTab + '-form').classList.remove('hidden');
+                });
+            });
+        });
+    </script>
+    <script id="smooth-scroll">
+        document.addEventListener('DOMContentLoaded', function () {
+            const links = document.querySelectorAll('a[href^="#"]');
+            links.forEach(link => {
+                link.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const targetId = this.getAttribute('href').substring(1);
+                    const targetElement = document.getElementById(targetId);
+                    if (targetElement) {
+                        targetElement.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                    }
+                });
+            });
+        });
+
+
+        const menuBtn = document.getElementById("menu-btn");
+        const sidebar = document.getElementById("sidebar");
+        const overlay = document.getElementById("overlay");
+        const closeBtn = document.getElementById("close-btn");
+
+        menuBtn.addEventListener("click", () => {
+            sidebar.classList.remove("-translate-x-full");
+            overlay.classList.remove("hidden");
+        });
+
+        closeBtn.addEventListener("click", () => {
+            sidebar.classList.add("-translate-x-full");
+            overlay.classList.add("hidden");
+        });
+
+        overlay.addEventListener("click", () => {
+            sidebar.classList.add("-translate-x-full");
+            overlay.classList.add("hidden");
+        });
+        const fakePlumbers = [
+            { name: 'Abdulloh', experience: '5 yil', rating: 5 },
+            { name: 'Sardor', experience: '3 yil', rating: 4 },
+            { name: 'Shavkat', experience: '7 yil', rating: 5 },
+            { name: 'Javohir', experience: '2 yil', rating: 3 },
+        ];
+
+        function showPlumbers() {
+            const list = document.getElementById('plumber-list');
+            const container = document.getElementById('plumbers');
+            container.innerHTML = ''; // Tozalash
+
+            fakePlumbers
+                .sort((a, b) => b.rating - a.rating)
+                .forEach(plumber => {
+                    container.innerHTML += `
+            <div class="border p-6 rounded-lg shadow-sm hover:shadow-lg transition">
+              <h3 class="text-xl font-bold text-blue-800 mb-1">${plumber.name}</h3>
+              <p class="text-gray-600 mb-1">Tajriba: ${plumber.experience}</p>
+              <p class="text-yellow-500">⭐️ ${'⭐️'.repeat(plumber.rating)}</p>
+            </div>`;
+                });
+
+            list.classList.remove('hidden');
+            list.scrollIntoView({ behavior: 'smooth' });
+        }
+    </script>
+</body>
+
+</html>
